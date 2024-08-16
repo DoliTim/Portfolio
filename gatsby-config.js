@@ -6,7 +6,7 @@ module.exports = {
     title: `Doli`,
     siteUrl: `https://www.yourdomain.tld`
   },
-  plugins: ["gatsby-plugin-postcss", "gatsby-plugin-google-gtag", "gatsby-plugin-image", {
+  plugins: ["gatsby-plugin-postcss",  "gatsby-plugin-image", {
     resolve: 'gatsby-plugin-manifest',
     options: {
       "icon": "src/images/icon.png"

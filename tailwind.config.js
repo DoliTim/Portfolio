@@ -5,7 +5,12 @@ module.exports = {
     `./src/components/**/*.{js,jsx,ts,tsx}`,
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        bebas: ['Bebas Neue', 'sans-serif'],
+        gloria: ['Gloria Hallelujah', 'cursive'],
+      },
+    },
   },
   plugins: [],
 }

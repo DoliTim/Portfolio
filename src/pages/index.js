@@ -133,41 +133,57 @@ const IndexPage = () => {
 
         {/* Projects Section */}
         <section id="projects" className="mb-16 lg:mb-20">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">Projects</h2>
-          <div className="space-y-8">
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h3 className="text-xl lg:text-2xl font-semibold mb-2">Syskit Junior Cloud DevOps Assignment</h3>
-              <p className="text-gray-300 text-sm lg:text-base">
-                A DevOps project that demonstrates cloud infrastructure automation using Terraform and CI/CD pipelines.
-              </p>
-              <a href="https://github.com/DoliTim/syskit-assignment" className="text-orange-500 hover:text-orange-300 underline mt-2 block">View on GitHub</a>
-            </div>
+  <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">Projects</h2>
+  <div className="space-y-8">
+    <div className="bg-gray-800 p-6 rounded-lg">
+      <h3 className="text-xl lg:text-2xl font-semibold mb-2">Academia</h3>
+      <p className="text-gray-300 text-sm lg:text-base">
+        Medicine Tracker is a web application designed to help patients and doctors manage and track medication prescriptions.
+      </p>
+      <p className="text-orange-500 text-sm">Technologies: HTML, CSS, JavaScript, Python, Flask,SQlite</p>
+      <a href="https://github.com/DoliTim/Academia" className="text-orange-500 hover:text-orange-300 underline mt-2 block">View on GitHub</a>
+    </div>
 
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h3 className="text-xl lg:text-2xl font-semibold mb-2">Prime Naloga</h3>
-              <p className="text-gray-300 text-sm lg:text-base">
-                A C++ project focused on mathematical algorithms, including prime number calculations.
-              </p>
-              <a href="https://github.com/DoliTim/primeNaloga" className="text-orange-500 hover:text-orange-300 underline mt-2 block">View on GitHub</a>
-            </div>
+    <div className="bg-gray-800 p-6 rounded-lg">
+      <h3 className="text-xl lg:text-2xl font-semibold mb-2">znamNEznam</h3>
+      <p className="text-gray-300 text-sm lg:text-base">
+        A platform to find and offer tutoring services.
+      </p>
+      <p className="text-orange-500 text-sm">Technologies: Python, Django, React, SQlite</p>
+      <a href="https://github.com/DoliTim/znamNEznam" className="text-orange-500 hover:text-orange-300 underline mt-2 block">View on GitHub</a>
+    </div>
 
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h3 className="text-xl lg:text-2xl font-semibold mb-2">Academia</h3>
-              <p className="text-gray-300 text-sm lg:text-base">
-                Medicine Tracker is a web application designed to help patients and doctors manage and track medication prescriptions.
-              </p>
-              <a href="https://github.com/DoliTim/Academia" className="text-orange-500 hover:text-orange-300 underline mt-2 block">View on GitHub</a>
-            </div>
+    <div className="bg-gray-800 p-6 rounded-lg">
+      <h3 className="text-xl lg:text-2xl font-semibold mb-2">Portfolio</h3>
+      <p className="text-gray-300 text-sm lg:text-base">
+        This portfolio site itself, built using Gatsby.js and styled with Tailwind CSS.
+      </p>
+      <p className="text-orange-500 text-sm">Technologies: Gatsby.js, Tailwind CSS</p>
+      <a href="https://github.com/DoliTim/Portfolio" className="text-orange-500 hover:text-orange-300 underline mt-2 block">View on GitHub</a>
+    </div>
 
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h3 className="text-xl lg:text-2xl font-semibold mb-2">Portfolio</h3>
-              <p className="text-gray-300 text-sm lg:text-base">
-                This portfolio site itself, built using Gatsby.js and styled with Tailwind CSS.
-              </p>
-              <a href="https://github.com/DoliTim/Portfolio" className="text-orange-500 hover:text-orange-300 underline mt-2 block">View on GitHub</a>
-            </div>
-          </div>
-        </section>
+    <div className="bg-gray-800 p-6 rounded-lg">
+      <h3 className="text-xl lg:text-2xl font-semibold mb-2">Prime Naloga</h3>
+      <p className="text-gray-300 text-sm lg:text-base">
+        A C++ project focused on mathematical algorithms, including prime number calculations.
+      </p>
+      <p className="text-orange-500 text-sm">Technologies: C++</p>
+      <a href="https://github.com/DoliTim/primeNaloga" className="text-orange-500 hover:text-orange-300 underline mt-2 block">View on GitHub</a>
+    </div>
+
+    <div className="bg-gray-800 p-6 rounded-lg">
+      <h3 className="text-xl lg:text-2xl font-semibold mb-2">Syskit Junior Cloud DevOps Assignment</h3>
+      <p className="text-gray-300 text-sm lg:text-base">
+        A DevOps project that demonstrates cloud infrastructure automation using Terraform and CI/CD pipelines.
+      </p>
+      <p className="text-orange-500 text-sm">Technologies: Terraform, AWS, Jenkins</p>
+      <a href="https://github.com/DoliTim/syskit-assignment" className="text-orange-500 hover:text-orange-300 underline mt-2 block">View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+
+
 
         {/* Documentation Section */}
         <section id="documentation" className="mb-16 lg:mb-20">

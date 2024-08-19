@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import profileImage from "../images/Tim-Dolinšek-scaled.jpg";
+import backgroundImage from "../images/beige-iphone-1125-x-2436-j9s93wpzj16y2r9u.jpg"; // Make sure to import your background image here
 
 const IndexPage = () => {
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
@@ -93,20 +94,29 @@ const IndexPage = () => {
       </motion.aside>
 
       {/* Main Content */}
-      <main className="w-full lg:w-3/5 p-8 lg:p-10 ml-auto font-newamsterdam">
-        {/* Always Visible About Section */}
-        <section id="about" className="mb-16 lg:mb-20">
-          <div className="cursor-pointer" onClick={toggleAboutSection}>
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">
-              About Me {isAboutExpanded ? "-" : "+"}
-            </h2>
-            {/* First paragraph always visible */}
-            <p className="text-base lg:text-lg leading-relaxed">
-              I’m Tim Dolinšek, a dedicated system engineer and DevOps specialist. Currently in my second year of System Engineering, I’ve maintained a GPA of 9.3, while actively pursuing knowledge and experience in cloud computing and software engineering. Along with being certified as a Google Associate Cloud Engineer, I’ve had the opportunity to work hands-on with full hardware servers and their administration, enhancing my practical knowledge.
-            </p>
-          </div>
+      <main className="w-full lg:w-3/5 p-8 lg:p-10 ml-auto font-newamsterdam relative">
+        {/* Right Background Image */}
+        <div
+          className="fixed top-0 right-0 w-full lg:w-3/5 h-screen bg-cover bg-center z-0"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+          }}
+        ></div>
 
-          {/* Expandable/Collapsible Section */}
+        <div className="relative z-10"> {/* Ensure content is above background */}
+          {/* Always Visible About Section */}
+          <section id="about" className="mb-16 lg:mb-20">
+            <div className="cursor-pointer" onClick={toggleAboutSection}>
+              <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">
+                About Me {isAboutExpanded ? "-" : "+"}
+              </h2>
+              {/* First paragraph always visible */}
+              <p className="text-base lg:text-lg leading-relaxed">
+                I’m Tim Dolinšek, a dedicated system engineer and DevOps specialist...
+              </p>
+            </div>
+
+            {/* Expandable/Collapsible Section */}
           <motion.div
             initial={isAboutExpanded ? { height: 0, opacity: 0 } : { height: "auto", opacity: 1 }}
             animate={isAboutExpanded ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
@@ -131,8 +141,8 @@ const IndexPage = () => {
           </motion.div>
         </section>
 
-        {/* Projects Section */}
-        <section id="projects" className="mb-16 lg:mb-20">
+
+          <section id="projects" className="mb-16 lg:mb-20">
   <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">Projects</h2>
   <div className="space-y-8">
     <div className="bg-gray-800 p-6 rounded-lg">
@@ -182,25 +192,23 @@ const IndexPage = () => {
   </div>
 </section>
 
+          {/* Documentation Section */}
+          <section id="documentation" className="mb-16 lg:mb-20">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">Documentation</h2>
+            <p className="text-base lg:text-lg leading-relaxed">
+              Here is where you can find my technical documentation...
+            </p>
+          </section>
 
-
-
-        {/* Documentation Section */}
-        <section id="documentation" className="mb-16 lg:mb-20">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">Documentation</h2>
-          <p className="text-base lg:text-lg leading-relaxed">
-            Here is where you can find my technical documentation, covering topics like cloud infrastructure, automation scripts, and system configuration.
-          </p>
-        </section>
-
-        {/* Download CV Section */}
-        <section id="cv" className="mt-16">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">Download My CV</h2>
-          <a href="/files/PR1-Tim_Dolinsek.pdf" download className="text-orange-500 hover:text-orange-300 underline">Download CV (PDF)</a>
-        </section>
+          {/* Download CV Section */}
+          <section id="cv" className="mt-16">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">Download My CV</h2>
+            <a href="/files/PR1-Tim_Dolinsek.pdf" download className="text-orange-500 hover:text-orange-300 underline">Download CV (PDF)</a>
+          </section>
+        </div>
       </main>
     </div>
   );
 };
 
-export default IndexPage
+export default IndexPage;

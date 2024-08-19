@@ -9,6 +9,7 @@ module.exports = {
       fontFamily: {
         bebas: ['Bebas Neue', 'sans-serif'],
         gloria: ['Gloria Hallelujah', 'cursive'],
+        newamsterdam: ['New Amsterdam', 'serif'], // Add New Amsterdam here
       },
     },
   },

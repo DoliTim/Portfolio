@@ -6,9 +6,14 @@ import backgroundImage from "../images/beige-iphone-1125-x-2436-j9s93wpzj16y2r9u
 
 const IndexPage = () => {
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   const toggleAboutSection = () => {
     setIsAboutExpanded(!isAboutExpanded);
+  };
+
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
   };
 
   const handleMouseEnter = (e) => {
@@ -29,44 +34,56 @@ const IndexPage = () => {
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-black text-white">
+      {/* Mobile Hamburger Menu */}
+      <div className="lg:hidden fixed top-0 right-0 z-30 p-4">
+        <button onClick={toggleNav} className="text-white text-3xl">
+          ☰
+        </button>
+      </div>
+
       {/* Left Sidebar */}
       <motion.aside
-        className="w-full lg:w-1/3 h-auto lg:h-screen bg-black text-orange-500 p-6 lg:p-10 flex flex-col justify-between lg:fixed font-bebas z-20"  // Increased z-index
-        initial={{ x: "-100%" }}
-        animate={{ x: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        className={`w-full lg:w-1/3 lg:h-screen bg-black text-orange-500 p-6 lg:p-10 flex flex-col justify-between lg:fixed font-bebas transition-transform duration-300 ${
+          isNavOpen ? "transform translate-x-0" : "transform -translate-x-full lg:translate-x-0"
+        }`}
+        style={{ height: isNavOpen ? "auto" : "100vh" }}
+        initial={{ x: "-100%" }}  // Start off-screen to the left
+        animate={{ x: 0 }}       // Animate to its normal position
+        transition={{ duration: 0.5, ease: "easeInOut" }}  // Faster animation (0.5 seconds)
       >
-        <div className="flex flex-col flex-1">
-          <div className="flex flex-col lg:flex-row items-center lg:justify-between mb-8 space-y-4 lg:space-y-0">
-            <h1 className="text-3xl lg:text-4xl font-bold leading-tight">Tim Dolinšek</h1>
-            <img
-              src={profileImage}
-              alt="Tim Dolinšek"
-              className="w-20 lg:w-32 h-20 lg:h-32 rounded-full object-cover"
-            />
-          </div>
-          <nav className="space-y-4 lg:space-y-6 flex flex-col">
-            {["About", "Projects", "Documentation", "Contact"].map((item, index) => (
-              <motion.a
-                href={`#${item.toLowerCase()}`}
-                key={index}
-                className="block text-lg lg:text-xl relative hover:text-orange-300"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                whileHover={{ scale: 1.05 }}
-              >
-                {item}
-                <motion.div
-                  className="absolute bottom-0 left-0 w-full h-1 bg-orange-500 origin-left scale-x-0"
-                  whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.a>
-            ))}
-          </nav>
+        {/* Profile Section */}
+        <div className="flex items-center justify-between mb-16"> {/* Name on left, picture on right */}
+          <h1 className="text-4xl lg:text-5xl font-bold leading-tight">Tim Dolinšek</h1>
+          <img
+            src={profileImage}
+            alt="Tim Dolinšek"
+            className="w-32 lg:w-48 h-32 lg:h-48 rounded-full object-cover" // Larger image
+          />
         </div>
 
-        <div className="space-y-4 lg:space-y-6 flex flex-col">
+        {/* Navigation Links */}
+        <nav className="space-y-6 lg:space-y-8">
+          {["About", "Projects", "Documentation", "Contact"].map((item, index) => (
+            <motion.a
+              href={`#${item.toLowerCase()}`}
+              key={index}
+              className="block text-2xl lg:text-3xl relative hover:text-orange-300" // Increase font size
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              whileHover={{ scale: 1.1 }} // Slightly larger scale on hover
+            >
+              {item}
+              <motion.div
+                className="absolute bottom-0 left-0 w-full h-1 bg-orange-500 origin-left scale-x-0"
+                whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.a>
+          ))}
+        </nav>
+
+        {/* Social Links */}
+        <div className="space-y-4 lg:space-y-6 mt-10">
           <motion.a
             href="https://github.com/DoliTim"
             className="block text-md hover:text-orange-300"
@@ -105,43 +122,42 @@ const IndexPage = () => {
         ></div>
 
         <div className="relative z-10 flex flex-col"> {/* Ensure content is above background */}
-          {/* Always Visible About Section */}
-          <section id="about" className="mb-16 lg:mb-20 flex flex-col">
-            <div className="cursor-pointer flex flex-col" onClick={toggleAboutSection}>
-              <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">
-                About Me {isAboutExpanded ? "-" : "+"}
-              </h2>
-              {/* First paragraph always visible */}
-              <p className="text-base lg:text-lg leading-relaxed">
-                I’m Tim Dolinšek, a dedicated system engineer and DevOps specialist...
-              </p>
-            </div>
+         {/* Always Visible About Section */}
+<section id="about" className="mb-16 lg:mb-20 flex flex-col items-start justify-center p-6 lg:p-10">
+  <div className="cursor-pointer flex flex-col" onClick={toggleAboutSection}>
+    <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">
+      About Me {isAboutExpanded ? "-" : "+"}
+    </h2>
+    {/* First paragraph always visible */}
+    <p className="text-base lg:text-lg leading-relaxed">
+      I’m Tim Dolinšek, a dedicated system engineer and DevOps specialist...
+    </p>
+  </div>
 
-            {/* Expandable/Collapsible Section */}
-            <motion.div
-              initial={isAboutExpanded ? { height: 0, opacity: 0 } : { height: "auto", opacity: 1 }}
-              animate={isAboutExpanded ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
-              style={{ overflow: "hidden" }}
-            >
-              {isAboutExpanded && (
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.8, opacity: 0 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="flex flex-col"
-                >
-                  <p className="text-base lg:text-lg leading-relaxed mt-4">
-                    During my internship at <a href="https://www.nicehash.com" className="text-orange-500 hover:text-orange-300 underline">NiceHash</a>, I gained significant experience in cloud technologies, network security, and CI/CD automation using Google Cloud Platform. I was responsible for managing server infrastructures, implementing security protocols, and optimizing system performance, which provided me with a solid foundation in DevOps and systems engineering.
-                  </p>
-                  <p className="text-base lg:text-lg leading-relaxed mt-4">
-                    In my free time, I enjoy diving deeper into software engineering, constantly learning and expanding my skill set. My hands-on experience, both in school and during internships, has provided me with a strong foundation in systems administration and development operations, equipping me to take on real-world challenges in tech. With a unique blend of technical expertise and adaptability, I am excited to contribute to innovative projects that push the boundaries of technology and continue to grow in my career.
-                  </p>
-                </motion.div>
-              )}
-            </motion.div>
-          </section>
+  {/* Expandable/Collapsible Section */}
+  <motion.div
+    initial={isAboutExpanded ? { height: 0, opacity: 0 } : { height: "auto", opacity: 1 }}
+    animate={isAboutExpanded ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+    transition={{ duration: 0.8, ease: "easeInOut" }}
+    style={{ overflow: "hidden" }}
+  >
+    {isAboutExpanded && (
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.8, opacity: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="flex flex-col"
+      >
+        <p className="text-base lg:text-lg leading-relaxed mt-4">
+          During my internship at <a href="https://www.nicehash.com" className="text-orange-500 hover:text-orange-300 underline">NiceHash</a>, I gained significant experience in cloud technologies, network security, and CI/CD automation using Google Cloud Platform...
+        </p>
+        {/* Additional content here */}
+      </motion.div>
+    )}
+  </motion.div>
+</section>
+
 
 {/* Projects Section */}
 <section id="projects" className="mb-16 lg:mb-20 flex flex-col">
@@ -186,7 +202,8 @@ const IndexPage = () => {
         whileTap={{ scale: 0.95 }}
       >
         <h3 className="text-xl lg:text-2xl font-semibold mb-2">{project.title}</h3>
-        <p className="text-gray-300 text-sm lg:text-base hover:text-black transition-colors duration-300">
+        {/* Updated text color from gray to white */}
+        <p className="text-white text-sm lg:text-base hover:text-black transition-colors duration-300">
           {project.description}
         </p>
         <p className="text-orange-500 text-sm">{`Technologies: ${project.technologies}`}</p>
@@ -213,7 +230,9 @@ const IndexPage = () => {
           {/* Download CV Section */}
           <section id="cv" className="mt-16 flex flex-col">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">Download My CV</h2>
-            <a href="/files/PR1-Tim_Dolinsek.pdf" download className="text-orange-500 hover:text-orange-300 underline">Download CV (PDF)</a>
+            <a href="/DOLI TIM 24.8-1.pdf" download className="text-orange-500 hover:text-orange-300 underline">
+  Download CV (PDF)
+</a>
           </section>
         </div>
       </main>

@@ -135,28 +135,32 @@ const IndexPage = () => {
   </div>
 
   {/* Expandable/Collapsible Section */}
-  <motion.div
-    initial={isAboutExpanded ? { height: 0, opacity: 0 } : { height: "auto", opacity: 1 }}
-    animate={isAboutExpanded ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
-    transition={{ duration: 0.8, ease: "easeInOut" }}
-    style={{ overflow: "hidden" }}
-  >
-    {isAboutExpanded && (
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.8, opacity: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex flex-col"
-      >
-        <p className="text-base lg:text-lg leading-relaxed mt-4">
-          During my internship at <a href="https://www.nicehash.com" className="text-orange-500 hover:text-orange-300 underline">NiceHash</a>, I gained significant experience in cloud technologies, network security, and CI/CD automation using Google Cloud Platform...
-        </p>
-        {/* Additional content here */}
-      </motion.div>
-    )}
-  </motion.div>
+<motion.div
+  initial={isAboutExpanded ? { height: 0, opacity: 0 } : { height: "auto", opacity: 1 }}
+  animate={isAboutExpanded ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+  transition={{ duration: 0.8, ease: "easeInOut" }}
+  style={{ overflow: "hidden" }}
+>
+  {isAboutExpanded && (
+    <motion.div
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0.8, opacity: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="flex flex-col"
+    >
+      <p className="text-base lg:text-lg leading-relaxed mt-4">
+        I am currently in my second year of System Engineering, maintaining an excellent GPA of 9.3. I have also earned certification as a Google Associate Cloud Engineer, which has equipped me with advanced knowledge in cloud technologies and DevOps practices. During my internship at <a href="https://www.nicehash.com" className="text-orange-500 hover:text-orange-300 underline">NiceHash</a>, I gained hands-on experience in server administration, cloud computing, network security, and the automation of CI/CD processes using Google Cloud Platform. In addition to working on full server systems, I focused on implementing solutions that enhance security and ensure optimal performance.
+        <br /><br />
+        Beyond my technical expertise, I bring valuable teamwork experience from my time as a member of the ensemble at the Slovene National Theatre Maribor. This role helped me develop problem-solving skills and adaptability, qualities that I believe are crucial in the IT sector.
+        <br /><br />
+        In my free time, I stay engaged with software engineering, 3D printing, and working on hobby projects to keep learning and bring my ideas to life.
+      </p>
+    </motion.div>
+  )}
+</motion.div>
 </section>
+
 
 
 {/* Projects Section */}

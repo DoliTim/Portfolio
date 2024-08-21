@@ -3,6 +3,18 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@media (max-width: 1024px) {
+  aside {
+    order: 2; /* Move the sidebar to the bottom */
+    position: relative;
+    width: 100%;
+    transform: translateY(0); /* Reset any transforms */
+  }
+
+  main {
+    order: 1; /* Ensure the main content stays at the top */
+  }
+}
 
 html, body {
   margin: 0;

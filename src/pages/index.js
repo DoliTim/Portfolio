@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import profileImage from "../images/Tim-Dolinšek-scaled.jpg";
 import backgroundImage from "../images/beige-iphone-1125-x-2436-j9s93wpzj16y2r9u.jpg";
-
+import logo from "../images/icon.png"
 const IndexPage = () => {
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
-  const [isNavOpen, setIsNavOpen] = useState(false); // State for the sidebar
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const toggleAboutSection = () => {
@@ -14,11 +14,11 @@ const IndexPage = () => {
   };
 
   const toggleNav = () => {
-    setIsNavOpen(!isNavOpen); // Toggle the sidebar
+    setIsNavOpen(!isNavOpen);
   };
 
   useEffect(() => {
-    setIsLoaded(true); // Trigger the animation when the component is loaded
+    setIsLoaded(true);
   }, []);
 
   const handleMouseEnter = (e) => {
@@ -39,40 +39,32 @@ const IndexPage = () => {
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-black text-white">
-      {/* Mobile Top Bar */}
-      <header className="w-full p-4 fixed top-0 left-0 z-30 bg-black flex justify-between items-center lg:hidden">
-        <div className="flex items-center space-x-4">
-          <img
-            src={profileImage}
-            alt="Tim Dolinšek"
-            className="w-10 h-10 rounded-full object-cover"
-          />
-          <h1 className="text-xl font-bold">Tim Dolinšek</h1>
-        </div>
-        <button onClick={toggleNav} className="text-white text-3xl">
-          ☰
-        </button>
-      </header>
+{/* Mobile Top Bar */}
+<header className="w-full p-4 fixed top-0 left-0 z-30 bg-black flex items-center justify-between lg:hidden">
+  <img
+    src={profileImage}
+    alt="Tim Dolinšek"
+    className="w-10 h-10 rounded-full object-cover"
+  />
+  <h1 className="text-xl font-bold text-orange-500 font-bebas">Tim Dolinšek</h1>
+  <img
+    src={logo}
+    alt="Logo"
+    className="w-8 h-8" // Adjust size as needed
+  />
+</header>
 
       {/* Left Sidebar */}
       <motion.aside
         className={`w-full lg:w-1/3 lg:h-screen bg-black text-orange-500 p-6 lg:p-10 flex flex-col justify-between lg:fixed font-bebas transition-transform duration-300 ${
-          isNavOpen ? "transform translate-x-0" : "transform -translate-x-full lg:translate-x-0"
+          isNavOpen ? "transform translate-x-0" : "transform translate-y-full lg:translate-x-0"
         }`}
-        initial={{ x: "-100%" }} // Start off-screen to the left
-        animate={isLoaded ? { x: 0 } : {}} // Animate to normal position
-        transition={{ duration: 0.8, ease: "easeInOut" }} // Smooth animation
+        initial={{ y: "100%" }} // Mobile: Start at bottom
+        animate={isLoaded ? { y: 0 } : {}} // Animate to the bottom for mobile
+        transition={{ duration: 0.8, ease: "easeInOut" }}
       >
-        {/* Close Button */}
-        <button
-          onClick={toggleNav}
-          className="text-white text-3xl lg:hidden self-end mb-8"
-        >
-          ✕
-        </button>
-
-        {/* Profile Section */}
-        <div className="flex items-center justify-between mb-16">
+        {/* Only show on larger screens */}
+        <div className="hidden lg:flex items-center justify-between mb-16">
           <h1 className="text-4xl lg:text-5xl font-bold leading-tight">Tim Dolinšek</h1>
           <img
             src={profileImage}
@@ -82,7 +74,7 @@ const IndexPage = () => {
         </div>
 
         {/* Navigation Links */}
-        <nav className="space-y-6 lg:space-y-8">
+        <nav className="space-y-6 lg:space-y-8 bg-opacity-50 bg-black p-4 rounded-lg">
           {["About", "Projects", "Documentation", "Contact"].map((item, index) => (
             <motion.a
               href={`#${item.toLowerCase()}`}
@@ -103,7 +95,7 @@ const IndexPage = () => {
         </nav>
 
         {/* Social Links */}
-        <div className="space-y-4 lg:space-y-6 mt-10">
+        <div className="space-y-4 lg:space-y-6 mt-10 bg-opacity-50 bg-black p-4 rounded-lg">
           <motion.a
             href="https://github.com/DoliTim"
             className="block text-md hover:text-orange-300"
@@ -130,6 +122,7 @@ const IndexPage = () => {
           </motion.a>
         </div>
       </motion.aside>
+
 
       {/* Main Content */}
       <main className="w-full lg:w-3/5 p-8 lg:p-10 ml-auto flex flex-col font-roboto relative mt-20 lg:mt-0">

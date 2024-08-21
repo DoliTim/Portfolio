@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import profileImage from "../images/Tim-Dolinšek-scaled.jpg";
@@ -7,15 +7,19 @@ import backgroundImage from "../images/beige-iphone-1125-x-2436-j9s93wpzj16y2r9u
 const IndexPage = () => {
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false); // State for the sidebar
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const toggleAboutSection = () => {
     setIsAboutExpanded(!isAboutExpanded);
   };
 
   const toggleNav = () => {
-    console.log("Toggle Nav called"); // Log to verify the function is triggered
     setIsNavOpen(!isNavOpen); // Toggle the sidebar
   };
+
+  useEffect(() => {
+    setIsLoaded(true); // Trigger the animation when the component is loaded
+  }, []);
 
   const handleMouseEnter = (e) => {
     gsap.to(e.target, {
@@ -55,6 +59,9 @@ const IndexPage = () => {
         className={`w-full lg:w-1/3 lg:h-screen bg-black text-orange-500 p-6 lg:p-10 flex flex-col justify-between lg:fixed font-bebas transition-transform duration-300 ${
           isNavOpen ? "transform translate-x-0" : "transform -translate-x-full lg:translate-x-0"
         }`}
+        initial={{ x: "-100%" }} // Start off-screen to the left
+        animate={isLoaded ? { x: 0 } : {}} // Animate to normal position
+        transition={{ duration: 0.8, ease: "easeInOut" }} // Smooth animation
       >
         {/* Close Button */}
         <button
@@ -133,10 +140,10 @@ const IndexPage = () => {
             backgroundImage: `url(${backgroundImage})`,
           }}
         ></div>
-        <div className="relative z-10 flex flex-col items-center lg:items-start mt-16 lg:mt-0">
+        <div className="relative z-10 flex flex-col lg:items-start mt-16 lg:mt-0"> {/* Removed text-center to keep left-aligned */}
           {/* Always Visible About Section */}
-          <section id="about" className="mb-16 lg:mb-20 flex flex-col items-center justify-center p-6 lg:p-10">
-            <div className="cursor-pointer flex flex-col text-center lg:text-left" onClick={toggleAboutSection}>
+          <section id="about" className="mb-16 lg:mb-20 flex flex-col justify-center p-6 lg:p-10">
+            <div className="cursor-pointer flex flex-col lg:text-left" onClick={toggleAboutSection}>
               <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">
                 About Me {isAboutExpanded ? "-" : "+"}
               </h2>
@@ -172,6 +179,7 @@ const IndexPage = () => {
               )}
             </motion.div>
           </section>
+
           {/* Projects Section */}
           <section id="projects" className="mb-16 lg:mb-20 flex flex-col">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">Projects</h2>

@@ -135,16 +135,16 @@ const IndexPage = () => {
         ></div>
         <div className="relative z-10 flex flex-col lg:items-start mt-16 lg:mt-0"> {/* Removed text-center to keep left-aligned */}
           {/* Always Visible About Section */}
-          <section id="about" className="mb-16 lg:mb-20 flex flex-col justify-center p-6 lg:p-10">
-            <div className="cursor-pointer flex flex-col lg:text-left" onClick={toggleAboutSection}>
-              <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">
-                About Me {isAboutExpanded ? "-" : "+"}
-              </h2>
-              {/* First paragraph always visible */}
-              <p className="text-base lg:text-lg leading-relaxed">
-                I’m Tim Dolinšek, a dedicated system engineer and DevOps specialist...
-              </p>
-            </div>
+<section id="about" className="mb-16 lg:mb-20 flex flex-col items-start p-6 lg:p-10"> 
+  {/* Changed 'justify-center' to 'items-start' for left alignment */}
+  <div className="cursor-pointer flex flex-col lg:text-left" onClick={toggleAboutSection}>
+    <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">
+      About Me {isAboutExpanded ? "-" : "+"}
+    </h2>
+    <p className="text-base lg:text-lg leading-relaxed">
+      I’m Tim Dolinšek, a dedicated system engineer and DevOps specialist...
+    </p>
+  </div>
 
             {/* Expandable/Collapsible Section */}
             <motion.div
@@ -244,13 +244,14 @@ const IndexPage = () => {
             </p>
           </section>
 
-          {/* Download CV Section */}
-          <section id="cv" className="mt-16 flex flex-col">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">Download My CV</h2>
-            <a href="/DOLI TIM 24.8-1.pdf" download className="text-orange-500 hover:text-orange-300 underline">
-  Download CV (PDF)
-</a>
-          </section>
+   <section id="cv" className="mt-16 flex flex-col">
+  <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">Download My CV</h2>
+  <a href="/CV.pdf" target="_blank" className="text-orange-500 hover:text-orange-300 underline">
+    View CV (PDF)
+  </a>
+</section>
+
+
         </div>
       </main>
     </div>

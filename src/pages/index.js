@@ -3,14 +3,23 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import profileImage from "../images/Tim-Dolinšek-scaled.jpg";
 import backgroundImage from "../images/beige-iphone-1125-x-2436-j9s93wpzj16y2r9u.jpg";
-import logo from "../images/icon.png"
+import logo from "../images/icon.png";
+import cvImage1 from "../images/cv-page-1.png"; 
+import cvImage2 from "../images/cv-page-2.png"; 
+
+
 const IndexPage = () => {
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isCVExpanded, setIsCVExpanded] = useState(false); // State for CV section
 
   const toggleAboutSection = () => {
     setIsAboutExpanded(!isAboutExpanded);
+  };
+
+  const toggleCVSection = () => {
+    setIsCVExpanded(!isCVExpanded); // Toggle CV section
   };
 
   const toggleNav = () => {
@@ -75,7 +84,7 @@ const IndexPage = () => {
 
         {/* Navigation Links */}
         <nav className="space-y-6 lg:space-y-8 bg-opacity-50 bg-black p-4 rounded-lg">
-          {["About", "Projects", "Documentation", "Contact"].map((item, index) => (
+          {["About", "Projects", "Documentation" , "CV"].map((item, index) => (
             <motion.a
               href={`#${item.toLowerCase()}`}
               key={index}
@@ -124,54 +133,71 @@ const IndexPage = () => {
       </motion.aside>
 
 
-      {/* Main Content */}
-      <main className="w-full lg:w-3/5 p-8 lg:p-10 ml-auto flex flex-col font-roboto relative mt-20 lg:mt-0">
-        {/* Right Background Image */}
-        <div
-          className="fixed top-0 right-0 w-full lg:w-3/5 h-screen bg-cover bg-center z-0"
-          style={{
-            backgroundImage: `url(${backgroundImage})`,
-          }}
-        ></div>
-        <div className="relative z-10 flex flex-col lg:items-start mt-16 lg:mt-0"> {/* Removed text-center to keep left-aligned */}
-          {/* Always Visible About Section */}
-<section id="about" className="mb-16 lg:mb-20 flex flex-col items-start p-6 lg:p-10"> 
-  {/* Changed 'justify-center' to 'items-start' for left alignment */}
-  <div className="cursor-pointer flex flex-col lg:text-left" onClick={toggleAboutSection}>
-    <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">
-      About Me {isAboutExpanded ? "-" : "+"}
-    </h2>
+     {/* Main Content */}
+<main className="w-full lg:w-3/5 p-8 lg:p-10 ml-auto flex flex-col font-roboto relative mt-20 lg:mt-0">
+  {/* Right Background Image */}
+  <div
+    className="fixed top-0 right-0 w-full lg:w-3/5 h-screen bg-cover bg-center z-0"
+    style={{
+      backgroundImage: `url(${backgroundImage})`,
+    }}
+  ></div>
+
+<div className="relative z-10 flex flex-col lg:items-start mt-16 lg:mt-0">
+  <section id="about" className="mb-16 lg:mb-20 flex flex-col">
+    <div className="flex flex-row items-left">
+      <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 mr-2">
+        About Me
+      </h2>
+      <button
+        onClick={toggleAboutSection}
+        className="text-2xl lg:text-3xl font-bold bg-orange-500 text-white w-10 h-10 lg:w-12 lg:h-12 rounded-full shadow-lg flex items-center justify-center hover:bg-orange-600 transition-colors duration-300 ml-4"
+      >
+        {isAboutExpanded ? "-" : "+"}
+      </button>
+    </div>
+
+    {/* Always visible text */}
     <p className="text-base lg:text-lg leading-relaxed">
       I’m Tim Dolinšek, a dedicated system engineer and DevOps specialist...
     </p>
-  </div>
 
-            {/* Expandable/Collapsible Section */}
-            <motion.div
-              initial={isAboutExpanded ? { height: 0, opacity: 0 } : { height: "auto", opacity: 1 }}
-              animate={isAboutExpanded ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
-              style={{ overflow: "hidden" }}
+    {/* Expandable/Collapsible Section */}
+    <motion.div
+      initial={isAboutExpanded ? { height: 0, opacity: 0 } : { height: "auto", opacity: 1 }}
+      animate={isAboutExpanded ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+      transition={{ duration: 0.8, ease: "easeInOut" }}
+      style={{ overflow: "hidden" }}
+      className="w-full"
+    >
+      {isAboutExpanded && (
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.8, opacity: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex flex-col"
+        >
+          <p className="text-base lg:text-lg leading-relaxed mt-4">
+            I am currently in my second year of System Engineering, maintaining an excellent GPA of 9.3. I have also earned certification as a Google Associate Cloud Engineer, which has equipped me with advanced knowledge in cloud technologies and DevOps practices. During my internship at{" "}
+            <a
+              href="https://www.nicehash.com"
+              className="text-orange-500 hover:text-orange-300 underline"
             >
-              {isAboutExpanded && (
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.8, opacity: 0 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="flex flex-col"
-                >
-                  <p className="text-base lg:text-lg leading-relaxed mt-4">
-                    I am currently in my second year of System Engineering, maintaining an excellent GPA of 9.3. I have also earned certification as a Google Associate Cloud Engineer, which has equipped me with advanced knowledge in cloud technologies and DevOps practices. During my internship at <a href="https://www.nicehash.com" className="text-orange-500 hover:text-orange-300 underline">NiceHash</a>, I gained hands-on experience in server administration, cloud computing, network security, and the automation of CI/CD processes using Google Cloud Platform. In addition to working on full server systems, I focused on implementing solutions that enhance security and ensure optimal performance.
-                    <br /><br />
-                    Beyond my technical expertise, I bring valuable teamwork experience from my time as a member of the ensemble at the Slovene National Theatre Maribor. This role helped me develop problem-solving skills and adaptability, qualities that I believe are crucial in the IT sector.
-                    <br /><br />
-                    In my free time, I stay engaged with software engineering, 3D printing, and working on hobby projects to keep learning and bring my ideas to life.
-                  </p>
-                </motion.div>
-              )}
-            </motion.div>
-          </section>
+              NiceHash
+            </a>
+            , I gained hands-on experience in server administration, cloud computing, network security, and the automation of CI/CD processes using Google Cloud Platform. In addition to working on full server systems, I focused on implementing solutions that enhance security and ensure optimal performance.
+            <br />
+            <br />
+            Beyond my technical expertise, I bring valuable teamwork experience from my time as a member of the ensemble at the Slovene National Theatre Maribor. This role helped me develop problem-solving skills and adaptability, qualities that I believe are crucial in the IT sector.
+            <br />
+            <br />
+            In my free time, I stay engaged with software engineering, 3D printing, and working on hobby projects to keep learning and bring my ideas to life.
+          </p>
+        </motion.div>
+      )}
+    </motion.div>
+    </section>
 
           {/* Projects Section */}
           <section id="projects" className="mb-16 lg:mb-20 flex flex-col">
@@ -244,14 +270,55 @@ const IndexPage = () => {
             </p>
           </section>
 
-   <section id="cv" className="mt-16 flex flex-col">
-  <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">Download My CV</h2>
-  <a href="/CV.pdf" target="_blank" className="text-orange-500 hover:text-orange-300 underline">
-    View CV (PDF)
-  </a>
+     {/* CV Section */}
+<section id="cv" className="mb-16 lg:mb-20 flex flex-col">
+  <div className="flex flex-row items-left">
+    <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 mr-2">
+      My CV
+    </h2>
+    <button
+      onClick={toggleCVSection}
+      className="text-2xl lg:text-3xl font-bold bg-orange-500 text-white w-10 h-10 lg:w-12 lg:h-12 rounded-full shadow-lg flex items-center justify-center hover:bg-orange-600 transition-colors duration-300 ml-4"
+    >
+      {isCVExpanded ? "-" : "+"}
+    </button>
+  </div>
+
+  {/* Always visible CV description */}
+  <p className="text-base lg:text-lg leading-relaxed">
+    You can view my CV below for more details on my professional background and experiences...
+  </p>
+
+  {/* Expandable/Collapsible Section */}
+  <motion.div
+    initial={isCVExpanded ? { height: 0, opacity: 0 } : { height: "auto", opacity: 1 }}
+    animate={isCVExpanded ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+    transition={{ duration: 0.8, ease: "easeInOut" }}
+    style={{ overflow: "hidden" }}
+    className="w-full"
+  >
+    {isCVExpanded && (
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.8, opacity: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="flex flex-col items-start"
+      >
+        <img
+          src={cvImage1}
+          alt="CV Page 1"
+          className="mb-8"
+        />
+        <img
+          src={cvImage2}
+          alt="CV Page 2"
+          className="mb-8"
+        />
+      </motion.div>
+    )}
+  </motion.div>
 </section>
-
-
         </div>
       </main>
     </div>
